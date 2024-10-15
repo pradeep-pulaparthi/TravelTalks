@@ -1,0 +1,298 @@
+/* General Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Wrapper */
+.wrapper {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    height: 90vh;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideUp 1s forwards ease-out;
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    background-color: #264653;
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+    animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    background-color: #2a9d8f;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: white;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: fadeSlideRight 0.7s forwards ease-out;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+.sidebar li:hover {
+    background-color: #e76f51;
+    transform: scale(1.05);
+}
+
+/* Content Section */
+.content {
+    flex: 3;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: fadeSlideLeft 0.8s forwards ease-out;
+}
+
+.reviews-header h1 {
+    font-size: 2rem;
+    color: #264653;
+    animation: fadeIn 1.5s forwards ease-out;
+}
+
+.reviews-header p {
+    color: #6c757d;
+    margin-top: 10px;
+    animation: fadeIn 1.5s forwards ease-out;
+    animation-delay: 0.3s;
+}
+
+.reviews-container {
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.review {
+    background-color: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border-left: 5px solid #2a9d8f;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideUp 0.6s forwards ease-out;
+}
+
+.review h4 {
+    margin-bottom: 10px;
+    color: #264653;
+}
+
+.review p {
+    color: #333;
+}
+
+/* Review Form */
+.review-form {
+    margin-top: 20px;
+    animation: fadeIn 1.2s forwards ease-out;
+    animation-delay: 0.4s;
+}
+
+.review-form h3 {
+    color: #264653;
+    font-size: 1.5rem;
+}
+
+.review-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-form input,
+.review-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.review-form textarea {
+    resize: none;
+    height: 100px;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+    border-color: #2a9d8f;
+}
+
+.review-form button {
+    padding: 10px;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.review-form button:hover {
+    background-color: #e76f51;
+    transform: scale(1.05);
+}
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #2a9d8f;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animations */
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeSlideLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Sort Options */
+.sort-options {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-options select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    background-color: white;
+    transition: border-color 0.3s ease;
+}
+
+.sort-options select:focus {
+    border-color: #2a9d8f;
+}
+
+/* Review Form - Initially Hidden */
+.hidden {
+    display: none;
+}
+
+.show-review-btn {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.show-review-btn:hover {
+    background-color: #21867a;
+}
+
+.review-form {
+    margin-top: 30px;
+    border-top: 2px solid #2a9d8f;
+    padding-top: 20px;
+}
