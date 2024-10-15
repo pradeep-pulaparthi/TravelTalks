@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/signup_style.css">
+    <script src="./scripts/signup_script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="base">
+            <div class="app">
+                <h1>TravelTalks</h1>
+            </div>
+        <div class="logo">
+            <img src="./images/logo2.png" alt="Logo">
+        </div>
+        </div>
+    </header>
+    <section class="Signup">
+        <div class="form">
+            <form class="signupform">
+                <div class="label">Signup</div>
+                <p id="info"></p>
+                <div class="arrange">
+                    <label for="Email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter Your Email";>
+                    <button id="getotp">Get OTP</button>
+                </div>
+                <div class="otp-container">
+                    <div>Enter OTP</div>
+                    <div  class="otp">
+                        <input type="text" maxlength="1" class="otp-input" id="digit1">
+                        <input type="text" maxlength="1" class="otp-input" id="digit2">
+                        <input type="text" maxlength="1" class="otp-input" id="digit3">
+                        <input type="text" maxlength="1" class="otp-input" id="digit4">
+                        <button id="verify">verify</button>
+                    </div>
+                </div>
+                <div class="arrange2">
+                    <label for="Password">Password</label>
+                    <input type="password" name="passwd" id="passwd" placeholder="Enter Password">
+                </div>
+                <div class="arrange2">
+                    <label for="retype">Retype Password</label>
+                    <input type="password" name="retype" id="repasswd" placeholder="Retype Your Password">
+                </div>
+                <button id="signup_button">Signup</button>
+                <div class="link">
+                    Already an User? 
+                    <a href="./index.html">Sign in</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

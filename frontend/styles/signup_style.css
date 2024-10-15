@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: "Open Sans";
+}
+:root{
+    --button-bg-color:rgb(66, 66, 209);
+    --button-text-color:whitesmoke;
+}
+body{
+    height:100vh;
+}
+
+.header{
+    height:15%;
+    background-color: 	#c5baa5
+}
+.base{
+    height:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.app{
+    flex-grow: 1; 
+    font-weight: bolder;
+    font-size: 2rem;
+    color:white;
+}
+.app h1{
+    height: 100%;
+    display: flex ;
+    align-items: center;
+    text-align: center ;
+}
+.logo{
+    flex-grow:1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.logo img{
+    height:inherit;
+    width:15%;
+}
+.Signup{
+    height:85%;
+    display: grid;
+    grid-auto-flow: column;
+    background-image: url('../images/hotel.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.form{
+    height:65%;
+    width:40%;
+    place-self: center;
+    border:2px solid blue;
+    border-radius: 10px;
+    padding:15px;
+    background: rgba(255, 249, 238, 0.8);
+}
+.signupform{
+    height:100%;
+    display: grid;
+    gap:0.5em;
+}
+.label{
+    place-self: center;
+    font-weight: bolder;
+    font-size: large;
+}
+.arrange{
+    display: grid;
+    grid-template-columns: 2fr 4fr 1fr;
+    gap:1rem;
+}
+.arrange2{
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    gap:1rem;
+}
+.otp-container{
+    height: 100%;
+    width: 100%;
+    display: none;
+    grid-template-columns: 2fr 5fr;
+    grid-auto-flow: column;
+    align-items: center;
+}
+.otp{
+    height: 100%;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+.otp-input{
+    height: 100%;
+    width: 19%;
+}
+.otp-input[type='text']{
+    padding:0 10px;
+    text-align: center;
+}
+.otp button{
+    width: 19%;
+    background-color: var(--button-bg-color) ;
+    border: none;
+    border-radius:5px;
+    color:var(--button-text-color);
+    font-weight: bolder;
+
+}
+.arrange input[type="email"]{
+    padding:0 10px;
+}
+.arrange2 input[type="password"]{
+    padding:0 10px;;
+}
+input:focus,
+input:hover{
+    outline: none;
+    border: 2px solid blue;
+}
+
+.arrange button{
+    background-color: rgb(66, 66, 209);
+    border:none;
+    border-radius: 5px;
+    font-weight: bolder;
+    color:whitesmoke;
+}
+
+.signupform #signup_button{
+    width:30%;
+    height: 100%;
+    place-self: end;
+    background-color: rgb(66, 66, 209);
+    border:none;
+    font-weight: bolder;
+    color:whitesmoke;
+    border-radius: 5px;
+}
+.link{
+    place-self: center;
+    font-weight: bolder;
+    font-size: 0.8rem;
+}

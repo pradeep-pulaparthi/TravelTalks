@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: "Open Sans";
+}
+body{
+    height:100vh;
+}
+
+.header{
+    height:15%;
+    background-color: 	#c5baa5
+}
+.base{
+    height:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.app{
+    flex-grow: 1; 
+    font-weight: bolder;
+    font-size: 2rem;
+    color:white;
+}
+.app h1{
+    height: 100%;
+    display: flex ;
+    align-items: center;
+    text-align: center ;
+}
+.logo{
+    flex-grow:1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.logo img{
+    height:inherit;
+    width:15%;
+}
+.center{
+    height:85%;
+    display: grid;
+    grid-template-columns: 1fr;
+    background-image: url('../images/hotel.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.login_head{
+    place-self: center;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+.login{
+    place-self: center;
+    height:55%;
+    width:40%;
+    border:2px solid rgb(52, 155, 196);
+    border-radius: 10px;
+    padding: 10px; 
+    display: grid;
+    grid-auto-flow: row;
+    line-height: 0.5rem;
+    gap: 0.5rem;
+    background: rgba(255, 255, 230, 0.5);
+}
+.Email{
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    font-weight: bolder;
+}
+.emaillabel{
+    /* display: flex;
+    justify-content: flex-start;
+    align-items: center; */
+    place-self:  center;
+}
+.name{
+    border-radius: 10px;
+    outline: none;
+    background-color: rgba(255,255,255,0.5);
+    font-size: 1em;
+    font-weight: bold;
+    outline: none;
+    padding:0 10px;
+}
+.name:hover,:focus{
+    border: 2px solid blue;
+}
+.align{
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    width: 100%;
+}
+.align #submit{
+    width: 30%;
+    height: 70%;
+    border-radius: 10px;
+    background-color: blue;
+    color:white;
+    font-size: 1rem;
+    font-weight: bolder;
+    border:0;
+}
+#message{
+    color:rgba(207, 35, 35, 0.9);
+    font-size: normal;
+    font-weight: bold;
+}
+.link{
+    place-self: center;
+    font-weight: bolder;
+    font-size: 1rem;
+}
+@media (max-width: 768px) {
+    .login {
+      width: 50%;
+    }
+  }
