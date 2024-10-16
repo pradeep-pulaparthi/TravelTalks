@@ -1,152 +1,313 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: "Open Sans";
-}
-:root{
-    --button-bg-color:rgb(66, 66, 209);
-    --button-text-color:whitesmoke;
-}
-body{
-    height:100vh;
+    font-family: "Poppins", sans-serif;
 }
 
-.header{
-    height:15%;
-    background-color: 	#c5baa5
-}
-.base{
-    height:100%;
+/* Body Styling */
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/background2.jpg') no-repeat center center/cover;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.app{
-    flex-grow: 1; 
-    font-weight: bolder;
-    font-size: 2rem;
-    color:white;
-}
-.app h1{
-    height: 100%;
-    display: flex ;
+    justify-content: center;
     align-items: center;
-    text-align: center ;
+    flex-direction: column;
+    padding-top: 80px; /* Prevent overlap */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
-.logo{
-    flex-grow:1;
-    height: 100%;
+
+/* Header */
+.header {
     width: 100%;
+    background-color: rgba(0, 123, 255, 0.7);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    width: 90%;
+    margin: 0 auto;
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
 }
-.logo img{
-    height:inherit;
-    width:15%;
+
+.brand h1 {
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
 }
-.Signup{
-    height:85%;
-    display: grid;
-    grid-auto-flow: column;
-    background-image: url('../images/hotel.png');
-    background-size:cover;
-    background-repeat: no-repeat;
+
+.brand h1 span {
+    color: #FFD700;
 }
-.form{
-    height:65%;
-    width:40%;
-    place-self: center;
-    border:2px solid blue;
+
+.brand h1:hover {
+    transform: scale(1.1);
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: rotate(360deg);
+}
+
+/* Centered Section */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 100px; /* Prevent overlap with header */
+}
+
+/* Signup Form */
+.signup {
+    width: 450px; /* Increased width */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
     border-radius: 10px;
-    padding:15px;
-    background: rgba(255, 249, 238, 0.8);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-out forwards;
 }
-.signupform{
-    height:100%;
-    display: grid;
-    gap:0.5em;
+
+.signup_head {
+    text-align: center;
+    font-size: 2rem; /* Improved heading size */
+    font-weight: 700;
+    color: #007BFF;
+    margin-bottom: 20px; /* Added margin */
 }
-.label{
-    place-self: center;
-    font-weight: bolder;
-    font-size: large;
+
+.Email {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
-.arrange{
-    display: grid;
-    grid-template-columns: 2fr 4fr 1fr;
-    gap:1rem;
-}
-.arrange2{
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    gap:1rem;
-}
-.otp-container{
-    height: 100%;
-    width: 100%;
-    display: none;
-    grid-template-columns: 2fr 5fr;
-    grid-auto-flow: column;
-    align-items: center;
-}
-.otp{
-    height: 100%;
-    width:100%;
+
+.email-otp-container {
     display: flex;
     justify-content: space-between;
+    align-items: center; /* Center align */
 }
-.otp-input{
-    height: 100%;
-    width: 19%;
-}
-.otp-input[type='text']{
-    padding:0 10px;
-    text-align: center;
-}
-.otp button{
-    width: 19%;
-    background-color: var(--button-bg-color) ;
-    border: none;
-    border-radius:5px;
-    color:var(--button-text-color);
-    font-weight: bolder;
 
+.emaillabel {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
 }
-.arrange input[type="email"]{
-    padding:0 10px;
-}
-.arrange2 input[type="password"]{
-    padding:0 10px;;
-}
-input:focus,
-input:hover{
+
+.name {
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    padding: 10px;
     outline: none;
-    border: 2px solid blue;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+    flex: 1; /* Take remaining space */
 }
 
-.arrange button{
-    background-color: rgb(66, 66, 209);
-    border:none;
-    border-radius: 5px;
-    font-weight: bolder;
-    color:whitesmoke;
+.name:focus {
+    border-color: #0056b3;
 }
 
-.signupform #signup_button{
-    width:30%;
-    height: 100%;
-    place-self: end;
-    background-color: rgb(66, 66, 209);
-    border:none;
-    font-weight: bolder;
-    color:whitesmoke;
-    border-radius: 5px;
+/* Button Styling */
+.align {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
 }
-.link{
-    place-self: center;
-    font-weight: bolder;
-    font-size: 0.8rem;
+
+.align #submit {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.align #submit:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* OTP Button Styling */
+.otp-button {
+    padding: 10px 15px; /* Adjusted padding */
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.otp-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Link */
+.link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.link a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.link a:hover {
+    color: #0056b3;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .signup {
+        width: 80%;
+    }
+
+    .name {
+        font-size: 0.9rem;
+    }
+
+    #submit {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .signup {
+        width: 30%;
+    }
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Toast Notification Styles */
+.toast {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.toast.success {
+    background-color: #28a745; /* Green for success */
+}
+
+.toast.error {
+    background-color: #dc3545; /* Red for error */
+}
+
+.toast.hide {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
+.email-otp-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.email-otp-container .name {
+    flex: 1;
+}
+
+.otp-input {
+    flex: 1;
+}
+
+.otp-button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.otp-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.otp-button:hover:not(:disabled) {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .email-otp-container {
+        flex-direction: column;
+    }
+
+    .email-otp-container .name,
+    .otp-button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }

@@ -1,126 +1,135 @@
-const inputs = document.querySelectorAll('.otp-input');
+// Constants for elements
+const emailInput = document.getElementById("email");
+const sendOtpButton = document.getElementById("send-otp");
+const otpContainer = document.getElementById("otp-container");
+const otpInput = document.getElementById("otp");
+const verifyOtpButton = document.getElementById("verify-otp");
+const passwordInput = document.getElementById("passwd");
+const rePasswordInput = document.getElementById("repasswd");
+const submitButton = document.getElementById("submit");
+const messageDisplay = document.getElementById("message");
 
-    inputs.forEach((input, index) => {
-      input.addEventListener('input', (e) => {
-        // Automatically move to the next input if a number is entered
-        if (e.target.value.length === 1 && index < inputs.length - 1) {
-          inputs[index + 1].focus();
-        }
-
-        // Automatically move back to the previous input if the current one is cleared
-        if (e.inputType === 'deleteContentBackward' && index > 0) {
-          inputs[index - 1].focus();
-        }
-    });
-});
-const getOtp=async ()=>{
-  try {
-    event.preventDefault();
-    const email=document.getElementById('email').value;
-    const response=await fetch('/api/v1/hotels/signup/otp',{
-      method:"POST",
-      headers:{
-          'Content-Type':"application/json"
-      },
-      body: JSON.stringify({
-        to:email
-      })
-    })
-    if(response.status===200)
-    {
-      const otpcontainer=document.querySelectorAll('.otp-container');
-      otpcontainer[0].style.display="grid";
-      document.getElementById('info').textContent="Otp sent successfully";
-      document.getElementById('email').disabled = true;
-      document.getElementById('email').style.opacity = 0.5;
-    }
-    else{
-      document.getElementById('Info').textContent="Unable to send otp";
-    }
-    const otpbutton=document.getElementById('getotp');
-    otpbutton.style.backgroundColor="red";
-    otpbutton.disabled=true;
-    setTimeout(()=>{
-      otpbutton.style.disabled=false;
-      otpbutton.style.backgroundColor="rgb(66, 66, 209)";
-      document.getElementById('email').disabled = false;
-      document.getElementById('email').style.opacity = 1;
-    },2*60*1000);
-  } catch (error) {
-    console.log(error);
-    document.getElementById('Info').textContent="Something Went wrong";
-  }
+// Function to show toast notifications
+function showToast(message, type) {
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
 }
-const onVerify= async()=>{
-  event.preventDefault();
-  const inputs = document.querySelectorAll('.otp-input');
-  let s="";
-  inputs.forEach(i=>s=s+i.value)
+
+// Handle OTP sending
+sendOtpButton.addEventListener("click", async () => {
+  const email = emailInput.value;
+  if (!email) {
+      showToast("Please enter your email.", "error");
+      return;
+  }
+
   try {
-    const response= await fetch('/api/v1/hotels/signup/verify',{
-      method:"POST",
-      headers:{
-        'Content-Type':"application/json"
-      },
-      body: JSON.stringify({
-        email: document.getElementById('email').value,
-        otp:s
-      })
-    });
-    if(response.status===200)
-    {
-      const styles={
-        "grid-template-columns": "2fr 5fr"
+      const response = await fetch("/api/v1/hotels/signup/otp", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ to: email }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+          showToast("OTP sent successfully. Please check your email.", "success");
+          otpContainer.style.display = "flex";  // Show OTP input and button
+          sendOtpButton.disabled = true;
+          emailInput.disabled=true;
+          // Disable the button for 2 minutes and change the button color
+          setTimeout(() => {
+              sendOtpButton.disabled = false;
+              emailInput.disabled=false;
+          }, 120000);
+      } else {
+          showToast(data.message, "error");
       }
-      document.getElementById('getotp').style.display="none";
-      document.querySelector('.arrange').style["grid-template-columns"]= "2fr 5fr";
-      document.getElementById('info').textContent="OTP verified successfully";
-      document.querySelectorAll('.otp-container')[0].style.display="none";
-    }
-    else{
-
-      document.getElementById('info').textContent='Invalid OTP';
-    }
   } catch (error) {
-    console.log(error);
-    document.getElementById('info').textContent='Something went wrong';
+      showToast("Error sending OTP. Please try again.", "error");
   }
-}
-const onSignup= async()=>{
-  event.preventDefault();
+});
+
+verifyOtpButton.addEventListener("click", async () => {
+  const otp = otpInput.value;
+  if (!otp) {
+      showToast("Please enter the OTP.", "error");
+      return;
+  }
+
   try {
-    const email=document.getElementById('email').value;
-    const password=document.getElementById('passwd').value;
-    const retype=document.getElementById('repasswd').value;
-    const user={
-      email,
-      password,
-      retype
-    }
-    const response= await fetch('/api/v1/hotels/signup',{
-      method:"POST",
-      headers:{
-        'Content-Type':"application/json"
-      },
-      body: JSON.stringify(user)
-    })
-    const info=document.getElementById('info');
-    if(response.status===201)
-    {
-      info.textContent='User created Successfully';
-      setInterval(()=>{
-        window.location.href='/review.html'
-      },2000);
-    }
-    else{
-      const data=await response.json();
-      info.textContent=data.message;
-    }
-  } catch (error) {
-    document.getElementById('Info').textContent='An error Occured!';
-  }
+      const response = await fetch("/api/v1/hotels/signup/verify", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: emailInput.value, otp }),
+      });
 
-}
-document.getElementById('getotp').addEventListener('click',getOtp);
-document.getElementById('verify').addEventListener('click',onVerify);
-document.getElementById('signup_button').addEventListener('click',onSignup);
+      const data = await response.json();
+      if (data.success) {
+          showToast("OTP verified successfully!", "success");
+
+          // Hide OTP input, verify button, and send OTP button after verification
+          otpContainer.style.display = "none";
+          sendOtpButton.style.display = "none";
+          verifyOtpButton.style.display = "none";
+          emailInput.disabled=true;
+      } else {
+          showToast(data.message, "error");
+      }
+  } catch (error) {
+      showToast("Error verifying OTP. Please try again.", "error");
+  }
+});
+
+
+// Handle signup
+submitButton.addEventListener("click", async () => {
+    const password = passwordInput.value;
+    const rePassword = rePasswordInput.value;
+
+    if (!password || !rePassword) {
+        showToast("Please enter both password fields.", "error");
+        return;
+    }
+
+    if (password !== rePassword) {
+        showToast("Passwords do not match.", "error");
+        return;
+    }
+    if(!emailInput.disabled)
+    {
+      showToast("Please Verify Your email Before Sign in","error");
+      return;
+    }
+    try {
+        const response = await fetch("https://your-backend-api.com/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: emailInput.value, password }),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            showToast("Sign up successful! You can log in now.", "success");
+            // Redirect or reset the form as needed
+            setTimeout(() => {
+                window.location.href = "./index.html"; // Redirect to login page
+            }, 2000);
+        } else {
+            showToast(data.message, "error");
+        }
+    } catch (error) {
+        showToast("Error signing up. Please try again.", "error");
+    }
+});

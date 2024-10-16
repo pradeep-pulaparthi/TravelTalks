@@ -26,4 +26,4 @@ schema.pre('save', async function(next) {
         next(error);
     }
 });
-module.exports=mongoose.model('hotel',schema);
+module.exports=mongoose.model('user',schema);

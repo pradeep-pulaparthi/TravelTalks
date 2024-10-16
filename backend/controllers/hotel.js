@@ -83,12 +83,10 @@ const SendOTP=async (req,res)=>{
     }
 }
 const VerifyOtp= async(req,res)=>{
-    console.log("Hello from verify otp");
     const { email, otp } = req.body;
     if (otpStore[email] && otpStore[email].expiresAt > Date.now()) {
         if (otpStore[email].otp === parseInt(otp)) {
             delete otpStore[email]; 
-            console.log("success");
             return res.status(200).json({ success: true, message: "OTP verified successfully" });
         } else {
             return res.status(400).json({ success: false, message: "Invalid OTP" });

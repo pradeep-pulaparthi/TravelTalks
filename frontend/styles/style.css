@@ -1,125 +1,247 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: "Open Sans";
-}
-body{
-    height:100vh;
+    font-family: "Poppins", sans-serif;
 }
 
-.header{
-    height:15%;
-    background-color: 	#c5baa5
-}
-.base{
-    height:100%;
+/* Body Styling */
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/background2.jpg') no-repeat center center/cover;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.app{
-    flex-grow: 1; 
-    font-weight: bolder;
-    font-size: 2rem;
-    color:white;
-}
-.app h1{
-    height: 100%;
-    display: flex ;
+    justify-content: center;
     align-items: center;
-    text-align: center ;
+    flex-direction: column;
+    padding-top: 80px; /* Prevent overlap */
 }
-.logo{
-    flex-grow:1;
-    height: 100%;
+
+/* Header */
+.header {
     width: 100%;
+    background-color: rgba(0, 123, 255, 0.7);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    width: 90%;
+    margin: 0 auto;
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
 }
-.logo img{
-    height:inherit;
-    width:15%;
-}
-.center{
-    height:85%;
-    display: grid;
-    grid-template-columns: 1fr;
-    background-image: url('../images/hotel.png');
-    background-size:cover;
-    background-repeat: no-repeat;
-}
-.login_head{
-    place-self: center;
-    font-weight: bolder;
-    font-size: 1.5rem;
-}
-.login{
-    place-self: center;
-    height:55%;
-    width:40%;
-    border:2px solid rgb(52, 155, 196);
-    border-radius: 10px;
-    padding: 10px; 
-    display: grid;
-    grid-auto-flow: row;
-    line-height: 0.5rem;
-    gap: 0.5rem;
-    background: rgba(255, 255, 230, 0.5);
-}
-.Email{
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    font-weight: bolder;
-}
-.emaillabel{
-    /* display: flex;
-    justify-content: flex-start;
-    align-items: center; */
-    place-self:  center;
-}
-.name{
-    border-radius: 10px;
-    outline: none;
-    background-color: rgba(255,255,255,0.5);
-    font-size: 1em;
+
+.brand h1 {
+    color: #fff;
+    font-size: 2.2rem;
     font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.brand h1 span {
+    color: #FFD700;
+}
+
+.brand h1:hover {
+    transform: scale(1.1);
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: rotate(360deg);
+}
+
+/* Centered Section */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 100px; /* Prevent overlap with header */
+}
+
+/* Login Form */
+.login {
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.login_head {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #007BFF;
+}
+
+.Email {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.emaillabel {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+}
+
+.name {
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    padding: 10px;
     outline: none;
-    padding:0 10px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
 }
-.name:hover,:focus{
-    border: 2px solid blue;
+
+.name:focus {
+    border-color: #0056b3;
 }
-.align{
+
+/* Button Styling */
+.align {
     display: flex;
     justify-content: flex-end;
-    align-items: end;
-    width: 100%;
+    margin-top: 10px;
 }
-.align #submit{
-    width: 30%;
-    height: 70%;
-    border-radius: 10px;
-    background-color: blue;
-    color:white;
+
+.align #submit {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
     font-size: 1rem;
-    font-weight: bolder;
-    border:0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
-#message{
-    color:rgba(207, 35, 35, 0.9);
-    font-size: normal;
-    font-weight: bold;
+
+.align #submit:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
-.link{
-    place-self: center;
-    font-weight: bolder;
+
+/* Link */
+.link {
+    text-align: center;
+    margin-top: 10px;
     font-size: 1rem;
 }
+
+.link a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.link a:hover {
+    color: #0056b3;
+}
+
+/* Media Queries */
 @media (max-width: 768px) {
     .login {
-      width: 50%;
+        width: 80%;
     }
-  }
+
+    .name {
+        font-size: 0.9rem;
+    }
+
+    #submit {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .login {
+        width: 30%;
+    }
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Toast Notification Styles */
+.toast {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.toast.success {
+    background-color: #28a745; /* Green for success */
+}
+
+.toast.error {
+    background-color: #dc3545; /* Red for error */
+}
+
+.toast.hide {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
+/* Ensure the signup form has the same styling as the login form */
+.signup {
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-out forwards;
+}

@@ -1,40 +1,69 @@
-let onSubmit=async ()=>{
+document.getElementById('submit').addEventListener('click', onSubmit);
+
+async function onSubmit(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const userName = document.getElementById('name').value.trim();
+    const password = document.getElementById('passwd').value.trim();
+
+    // Basic validation
+    if (!userName || !password) {
+        showToast('Please enter valid credentials', 'error');
+        return;
+    }
+
+    let user = {
+        email: userName,
+        password: password
+    };
+    console.log(user);
     try {
-        await event.preventDefault();
-        let userName=document.getElementById('name').value;
-        let password=document.getElementById('passwd').value;
-        let user={
-            email:userName,
-            password:password
-        }
-        const response=await fetch('/api/v1/hotels',{
-            method:"POST",
-            headers:{
-                'Content-Type':"application/json"
+        const response = await fetch('/api/v1/hotels', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(user)
-        })
-        console.log(response);
-        // let data=await response.json();
-        console.log("fetch request done..");
-        console.log(response.status)
+        });
+
+        // Handle response status
         if (response.status === 200) {
-            const data = await response.json(); // Parse the JSON response
-            console.log(data.message); // Log the success message
-            document.querySelector('#message').textContent="";
-            document.getElementById('name').value="";
-            document.getElementById('passwd').value="";
-            // Redirect the user to the review page
-            window.location.href = '/review.html'; // Perform the redirect
+            const data = await response.json(); // Parse JSON response
+            showToast('Login successful! Redirecting...', 'success');
+
+            // Clear input fields
+            document.getElementById('name').value = '';
+            document.getElementById('passwd').value = '';
+
+            // Redirect to reviews page after 2 seconds
+            setTimeout(() => {
+                window.location.href = '/review.html';
+            }, 2000);
+        } else if (response.status === 401) {
+            showToast('Invalid Credentials. Please try again.', 'error');
         } else {
-            const messageShower = document.querySelector('#message');
-            messageShower.textContent = "Login Failed: Invalid Credentials";
+            showToast('Something went wrong. Please try again later.', 'error');
         }
     } catch (error) {
-        console.log("catch block executed")
-        const messageShower=document.querySelector('#message');
-        messageShower.innerHTML="Server stopped responding";
-        console.log(error.message);
+        console.log("Error occurred:", error.message);
+        showToast('Server is not responding. Please try again later.', 'error');
     }
 }
-document.getElementById('submit').addEventListener("click",onSubmit);
+
+// Toast Notification Function
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.classList.add('toast');
+    toast.classList.add(type); // Success or error styling
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+
+    // Animate and remove toast after 3 seconds
+    setTimeout(() => {
+        toast.classList.add('hide');
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 500); // Allow animation to complete before removal
+    }, 3000);
+}
