@@ -10,6 +10,7 @@ const ValidateUser=async (req,res)=>{
     try {
         const {password}=req.body;
         const email=req.body.email.toLowerCase();
+        console.log(email,password);
         const user=await model.findOne({email});
         if(!user)
         {
@@ -17,6 +18,7 @@ const ValidateUser=async (req,res)=>{
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
+            console.log("Hello");
             return res.status(401).json({ message: "Invalid email or password" });
         }
         res.status(200).json({message:"Login Successful"}); 
@@ -55,8 +57,11 @@ const CreateUser= async (req,res)=>{
 }
 const SendOTP=async (req,res)=>{
     const email=req.body.to;
-    const user=model.findOne({email});
-    if(user){
+    const user=await model.findOne({email});
+    console.log(email);
+    console.log(user);
+    
+    if(!user===false){
         return res.status(400).json({success:false,message:"Email already Exists!"});
     }
     const transporter= nodemailer.createTransport({
