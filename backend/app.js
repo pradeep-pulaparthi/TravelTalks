@@ -7,7 +7,7 @@ const hotelrouter=require('./routes/hotelcontroller')
 require('dotenv').config()
 
 app.use(express.json())
-app.use(express.static('../frontend'));
+app.use(express.static('./frontend'));
 
 
 app.use('/api/v1/hotels',router);
