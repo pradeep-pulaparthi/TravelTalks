@@ -125,7 +125,7 @@ submitButton.addEventListener("click", async () => {
             // Redirect or reset the form as needed
             setTimeout(() => {
                 window.location.href = "./index.html"; // Redirect to login page
-            }, 900);
+            }, 500);
         } else {
             showToast(data.message, "error");
         }

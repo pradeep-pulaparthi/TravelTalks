@@ -38,7 +38,7 @@ async function onSubmit(event) {
             // Redirect to reviews page after 2 seconds
             setTimeout(() => {
                 window.location.href = '/review.html';
-            }, 900);
+            }, 400);
         } else if (response.status === 401) {
             showToast('Invalid Credentials. Please try again.', 'error');
         } else {
