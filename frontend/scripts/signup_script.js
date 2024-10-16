@@ -111,12 +111,12 @@ submitButton.addEventListener("click", async () => {
       return;
     }
     try {
-        const response = await fetch("https://your-backend-api.com/signup", {
+        const response = await fetch("/api/v1/hotels/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email: emailInput.value, password }),
+            body: JSON.stringify({ email: emailInput.value, password,retype:rePassword }),
         });
 
         const data = await response.json();

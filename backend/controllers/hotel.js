@@ -8,15 +8,16 @@ const {userValidationSchema}=require('../ValidationSchema/uservalidation')
 const otpStore={}
 const ValidateUser=async (req,res)=>{
     try {
-        const {email,password}=req.body;
+        const {password}=req.body;
+        const email=req.body.email.toLowerCase();
         const user=await model.findOne({email});
         if(!user)
         {
-            return res.status(400).json({message:"Invalid Credentials!!"});
+            return res.status(401).json({message:"Invalid Credentials!!"});
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ message: "Invalid email or password" });
+            return res.status(401).json({ message: "Invalid email or password" });
         }
         res.status(200).json({message:"Login Successful"}); 
         console.log(`User: ${email} Logged in`);
@@ -27,8 +28,8 @@ const ValidateUser=async (req,res)=>{
 }
 const CreateUser= async (req,res)=>{
     try{
-        const {email,password,retype}=req.body;
-        console.log(email+"\n"+password+"\n"+retype);
+        const {password,retype}=req.body;
+        const email=req.body.email.toLowerCase();
         if(password!==retype)
             return res.status(400).json({message:"Retype Password Doesn't match"});
         const {error}=userValidationSchema.validate({email,password});
@@ -44,7 +45,7 @@ const CreateUser= async (req,res)=>{
                 password:password
             })
             user.save();
-            return res.status(201).json({message:"User Created Successfully"});
+            return res.status(201).json({message:"User Created Successfully",success:true});
         }
         res.status(400).json({message: "Email already Exists!!"});
     }
@@ -53,6 +54,11 @@ const CreateUser= async (req,res)=>{
     }
 }
 const SendOTP=async (req,res)=>{
+    const email=req.body.to;
+    const user=model.findOne({email});
+    if(user){
+        return res.status(400).json({success:false,message:"Email already Exists!"});
+    }
     const transporter= nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -65,7 +71,7 @@ const SendOTP=async (req,res)=>{
         console.log("Email sending...")
         const mailOptions={
             from: process.env.MAILID,
-            to: req.body.to,
+            to: email,
             sub: "Otp for Registration",
             text: `Your otp is ${otp}\n Don't share it with anyone`,
         }
