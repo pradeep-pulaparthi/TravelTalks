@@ -25,24 +25,14 @@ async function onSubmit(event) {
             },
             body: JSON.stringify(user)
         });
-
+        document.getElementById('name').value = '';
+        document.getElementById('passwd').value = '';
         // Handle response status
-        if (response.status === 200) {
-            const data = await response.json(); // Parse JSON response
-            showToast('Login successful! Redirecting...', 'success');
-
-            // Clear input fields
-            document.getElementById('name').value = '';
-            document.getElementById('passwd').value = '';
-
-            // Redirect to reviews page after 2 seconds
-            setTimeout(() => {
-                window.location.href = '/review.html';
-            }, 400);
-        } else if (response.status === 401) {
-            showToast('Invalid Credentials. Please try again.', 'error');
+        if (response.redirected) {
+            window.location.href = response.url; // This will trigger the redirect
         } else {
-            showToast('Something went wrong. Please try again later.', 'error');
+            const data = await response.json();
+            showToast(data.message, 'error');
         }
     } catch (error) {
         console.log("Error occurred:", error.message);

@@ -5,11 +5,15 @@ const connectDB = require("./db/connect");
 const router=require('./routes/controller')
 const hotelrouter=require('./routes/hotelcontroller')
 require('dotenv').config()
-
+const session=require('express-session')
 app.use(express.json())
 app.use(express.static('./frontend'));
 
-
+app.use(session({
+    secret: process.env.SECRET, // Change this to something secure
+    resave: false,
+    saveUninitialized: true,
+}));
 app.use('/api/v1/hotels',router);
 app.use('/api/hotels',hotelrouter);
 const start=async()=>{

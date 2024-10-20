@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchHotels() {
     try {
-        const response = await fetch('/api/hotels');
+        const response = await fetch('/api/hotels/getAll');
         const hotels = await response.json();
 
         const hotelList = document.getElementById('hotel-list');

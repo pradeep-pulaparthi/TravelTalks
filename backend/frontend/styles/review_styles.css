@@ -296,3 +296,110 @@ body {
     border-top: 2px solid #2a9d8f;
     padding-top: 20px;
 }
+
+.add-hotel-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-hotel-btn:hover {
+    background-color: #21867a;
+    transform: scale(1.05);
+}
+
+/* Sidebar li */
+.sidebar li {
+    position: relative;
+    padding: 15px 60px 15px 15px;
+}
+
+/* Buttons for Edit and Delete */
+.edit-hotel-btn, .delete-hotel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1rem;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+/* Position Edit Button */
+.edit-hotel-btn {
+    right: 45px; /* Adjust to make sure there's space between edit and delete */
+}
+
+/* Delete Button Hover Effect */
+.delete-hotel-btn:hover {
+    color: #e76f51;
+}
+
+/* Edit Button Hover Effect */
+.edit-hotel-btn:hover {
+    color: #2a9d8f;
+}
+
+/* Position Delete Button */
+.delete-hotel-btn {
+    right: 15px;
+}
+.hotel-input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-hotel-btn {
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-hotel-btn:hover {
+    background-color: #21867a;
+}
+/* General styles for input */
+.hotel-input {
+    width: 60%;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.hotel-input:focus {
+    outline: none;
+    border-color: #21867a;
+}
+
+/* Styling for edit and delete buttons */
+.edit-hotel-btn, .delete-hotel-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1rem;
+    color: white;
+}
+
+/* .edit-hotel-btn:hover, .delete-hotel-btn:hover {
+    transform: scale(1.2);
+} */

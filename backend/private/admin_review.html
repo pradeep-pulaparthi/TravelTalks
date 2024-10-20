@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Reviews</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon2.jpg">
+    <link rel="stylesheet" href="/styles/review_styles.css">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Hotels</h2>
+            <button id="add-hotel-btn" class="add-hotel-btn">+ Add Hotel</button>
+            <ul id="hotel-list">
+                <li data-id="taj-hotel-123" style="--i: 1;">
+                    Taj Hotel
+                    <!-- Edit Button -->
+                    <button class="edit-hotel-btn" title="Edit Hotel">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    
+                    <!-- Delete Button -->
+                    <button class="delete-hotel-btn" title="Delete Hotel">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </li>
+                
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <div class="reviews-header">
+                <h1 id="hotel-name">Select a Hotel</h1>
+                <p id="info">Click on a hotel to see the reviews.</p>
+
+                <!-- Sorting Dropdown -->
+                <div class="sort-options">
+                    <label for="sort-reviews">Sort Reviews By:</label>
+                    <select id="sort-reviews">
+                        <option value="name">Name</option>
+                        <option value="rating">Rating</option>
+                        <option value="date">Date</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Reviews Container -->
+            <div id="reviews-container" class="reviews-container">
+                <p>No reviews yet. Be the first to leave a review!</p>
+            </div>
+
+            <!-- Show Review Form Button -->
+            <button id="show-review-form-btn" class="show-review-btn">Leave a Review</button>
+
+            <!-- Hidden Review Form -->
+            <div class="review-form hidden" id="review-form-section">
+                <h3>Leave a Review</h3>
+                <form id="review-form">
+                    <input type="text" id="user" placeholder="Your Name" required>
+                    <input type="number" id="rating" placeholder="Rating (1-5)" min="1" max="5" required>
+                    <textarea id="comment" placeholder="Your Review" required></textarea>
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="/scripts/admin_reviewscript.js"></script>
+</body>
+</html>

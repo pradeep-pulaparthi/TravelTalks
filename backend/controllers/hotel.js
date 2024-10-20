@@ -1,6 +1,9 @@
+const path = require('path');
+
 const model=require('../model/model')
 const nodemailer=require('nodemailer')
 const bcrypt=require('bcrypt')
+const session=require('express-session')
 require('dotenv').config()
 
 const {userValidationSchema}=require('../ValidationSchema/uservalidation')
@@ -10,7 +13,7 @@ const ValidateUser=async (req,res)=>{
     try {
         const {password}=req.body;
         const email=req.body.email.toLowerCase();
-        console.log(email,password);
+        //console.log(email,password);
         const user=await model.findOne({email});
         if(!user)
         {
@@ -18,10 +21,10 @@ const ValidateUser=async (req,res)=>{
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            console.log("Hello");
             return res.status(401).json({ message: "Invalid email or password" });
         }
-        res.status(200).json({message:"Login Successful"}); 
+        req.session.user = { id: user._id, email: user.email };
+        res.redirect('/api/v1/hotels/review'); 
         console.log(`User: ${email} Logged in`);
     } catch (error) {
         res.status(400).json({message:"Something went wrong"});
@@ -47,6 +50,7 @@ const CreateUser= async (req,res)=>{
                 password:password
             })
             user.save();
+            req.session.user = { id: user._id, username: user.email };
             return res.status(201).json({message:"User Created Successfully",success:true});
         }
         res.status(400).json({message: "Email already Exists!!"});
